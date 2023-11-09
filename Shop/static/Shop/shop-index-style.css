@@ -7,9 +7,15 @@
     background-color: blue;
 }
 
-.col-md-3 img {
-    width: 100%;
-    height: auto;
+.col-md-3 div.card-img-div {
+    overflow: hidden;
+    /*width: 100%;*/
+    height: 355px;
+}
+
+div.card-img-div > img {
+    height: 100%;
+    width: auto;
 }
 
 body .carousel-indicator li {

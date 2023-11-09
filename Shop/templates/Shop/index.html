@@ -6,7 +6,7 @@
 
 {% block MainContent %}
  {% for cat_title, slides in slidesLi %}
-  <h4 class="cat-title">{{ cat_title|capfirst }}</h4>
+  <h4 class="cat-title">{{ cat_title|title }}</h4>
   <div id="product-cards" class="carousel slide">
    <div class="carousel-indicators">
     {% for idx, products in slides %}
@@ -22,7 +22,7 @@
 
       {% for product in products %}
        <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card" style="width: 18rem; height: 32rem; overflow: hidden">
+        <div class="card">
          <div class="card-img-div">
           <img src="/media/{{ product.product_image }}" class="card-img-top" alt="...">
          </div>

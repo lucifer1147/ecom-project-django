@@ -8,56 +8,58 @@
 {% block MainContent %}
  {% for idx_id, cat_title, slides in slidesLi %}
   <h4 class="cat-title">{{ cat_title|title }}</h4>
-  <div id="product-cards-{{ idx_id }}" class="carousel slide">
-   <div class="carousel-indicators">
-    {% for idx, products in slides %}
-     <button type="button" data-bs-target="#product-cards-{{ idx_id }}" data-bs-slide-to="{{ idx }}"
-             {% if idx == 0 %}class="active"
-             aria-current="true"{% endif %} aria-label="Slide {{ idx }}"></button>
-    {% endfor %}
-   </div>
+  <div class="row">
+   <div id="product-cards-{{ idx_id }}" class="col carousel slide" data-ride="carousel">
+    <div class="carousel-indicators">
+     {% for idx, products in slides %}
+      <button type="button" data-bs-target="#product-cards-{{ idx_id }}" data-bs-slide-to="{{ idx }}"
+              {% if idx == 0 %}class="active"
+              aria-current="true"{% endif %} aria-label="Slide {{ idx }}"></button>
+     {% endfor %}
+    </div>
 
-   <div class="carousel-inner">
+    <div class="carousel-inner">
 
-    {% for idx, products in slides %}
-     <div class="carousel-item {% if idx == 0 %}active{% endif %}">
+     {% for idx, products in slides %}
+      <div class="carousel-item {% if idx == 0 %}active{% endif %}">
 
-      {% for product in products %}
-       <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card">
-         <div class="card-img-div">
-          <img src="/media/{{ product.product_image }}" class="card-img-top" alt="...">
-         </div>
-         <div class="card-body">
-          <ul class="card-tags">
-           {% for tag in product.product_subCategory|split:","|slice:":2" %}
-            <li>{{ tag }}</li>
-           {% endfor %}
-          </ul>
-          <h5 class="card-title">{{ product.product_name }}</h5>
-          <p class="card-text">{{ product.product_description }}</p>
-          <a id="pr-{{ product.id }}" class="btn btn-primary cart">Add to Cart</a>
+       {% for product in products %}
+        <div class="col-xs-3 col-sm-3 col-md-3">
+         <div class="card">
+          <div class="card-img-div">
+           <img src="/media/{{ product.product_image }}" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+           <ul class="card-tags">
+            {% for tag in product.product_subCategory|split:","|slice:":2" %}
+             <li>{{ tag }}</li>
+            {% endfor %}
+           </ul>
+           <h5 class="card-title">{{ product.product_name }}</h5>
+           <p class="card-text">{{ product.product_description }}</p>
+           <a id="pr-{{ product.id }}" class="btn btn-primary cart">Add to Cart</a>
+          </div>
          </div>
         </div>
-       </div>
-      {% endfor %}
+       {% endfor %}
 
-     </div>
-    {% endfor %}
+      </div>
+     {% endfor %}
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#product-cards-{{ idx_id }}"
+            data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#product-cards-{{ idx_id }}"
+            data-bs-slide="next">
+     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Next</span>
+    </button>
 
    </div>
-
-   <button class="carousel-control-prev" type="button" data-bs-target="#product-cards-{{ idx_id }}"
-           data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-   </button>
-   <button class="carousel-control-next" type="button" data-bs-target="#product-cards-{{ idx_id }}"
-           data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-   </button>
-
   </div>
   <hr class="slide-separator">
  {% endfor %}

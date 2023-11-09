@@ -66,8 +66,10 @@ def search(request):
     return render(request, 'Shop/search.html')
 
 
-def product(request):
-    return render(request, 'Shop/product.html')
+def product(request, id):
+    curProduct = Product.objects.filter(id=id)[0]
+    print(curProduct)
+    return render(request, 'Shop/product.html', {'product': curProduct})
 
 
 def checkout(request):

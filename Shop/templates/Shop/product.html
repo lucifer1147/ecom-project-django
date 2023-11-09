@@ -1,7 +1,33 @@
 {% extends 'Shop/basic.html' %}
+{% load static %}
 
-{% block Title %} Product {% endblock %}
+{% block Title %} {{ product.product_name }} {% endblock %}
+{% block CustomStyles %} {% static 'Shop/styles/shop-product-styles.css' %} {% endblock %}
 
 {% block MainContent %}
- <h1>This is supposed to be the main content.</h1>
+
+ <div class="container">
+
+  <div class="row">
+   <div class="col-md-4">
+
+    <div class="row img-cont">
+     <img src="/media/{{ product.product_image }}" alt="product image here..." class="prod-img">
+    </div>
+
+    <div class="row action-buttons">
+     <button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
+     <button class="btn btn-light text-dark col-md-6"><strong>Add To Cart</strong></button>
+    </div>
+
+   </div>
+
+   <div class="col-md-8">
+    <h1 class="display-4"><strong>{{ product.product_name }}</strong></h1>
+    <hr>
+    <p class="display-5"><strong>₹{{ product.product_price }} /-</strong></p>
+    <p class="desc-header">{{ product.product_description }}</p>
+   </div>
+  </div>
+ </div>
 {% endblock %}

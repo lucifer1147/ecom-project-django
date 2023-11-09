@@ -1,0 +1,34 @@
+.row:first-of-type {
+    margin-top: 50px;
+}
+
+h1:first-of-type {
+    margin-top: 50px;
+}
+
+.col-md-8 {
+    padding-left: 50px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.img-cont {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.img-cont > img {
+    width: 100%;
+    padding: 0;
+}
+
+.desc-header {
+    font-size: large;
+    font-weight: 500;
+}

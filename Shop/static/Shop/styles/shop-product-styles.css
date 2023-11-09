@@ -52,7 +52,7 @@ h1:first-of-type {
 }
 
 ul.product-tags {
-    display:flex;
+    display: flex;
     list-style: none;
     padding-left: 0;
 }
@@ -80,3 +80,5 @@ ul.product-tags > li:first-child {
 .reply {
     margin-left: 5px;
 }
+
+

@@ -26,7 +26,7 @@ def index(request):
             tempLi = []
             for i in range(len(products)):
                 tempLi.append(products[i])
-                if i == len(products)-1:
+                if i == len(products) - 1:
                     productsLi.append(tempLi)
                     tempLi = []
                 elif len(tempLi) >= 4:
@@ -40,7 +40,7 @@ def index(request):
 
         slidesLi.append(slides)
 
-    rng = range(1, len(list(products_catwise.keys()))+1)
+    rng = range(1, len(list(products_catwise.keys())) + 1)
     slidesLi = list(item for item in zip(rng, list(products_catwise.keys()), slidesLi))
 
     return render(request, 'Shop/index.html',
@@ -68,8 +68,12 @@ def search(request):
 
 def product(request, id):
     curProduct = Product.objects.filter(id=id)[0]
-    print(curProduct)
-    return render(request, 'Shop/product.html', {'product': curProduct})
+    offerrange = list(range(1, 8))
+    detailsrange = list(range(1, 15))
+    reviewsrange = list(range(1, 20))
+    return render(request, 'Shop/product.html',
+                  {'product': curProduct, 'offerrange': offerrange, 'detailsrange': detailsrange,
+                   'reviewsrange': reviewsrange})
 
 
 def checkout(request):

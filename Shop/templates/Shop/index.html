@@ -3,7 +3,7 @@
 {% load string_methods %}
 
 {% block Title %} Home {% endblock %}
-{% block CustomStyles %} {% static 'Shop/shop-index-style.css' %} {% endblock %}
+{% block CustomStyles %} {% static 'Shop/styles/shop-index-style.css' %} {% endblock %}
 
 {% block MainContent %}
  {% for idx_id, cat_title, slides in slidesLi %}
@@ -36,7 +36,7 @@
           </ul>
           <h5 class="card-title">{{ product.product_name }}</h5>
           <p class="card-text">{{ product.product_description }}</p>
-          <a href="#" class="btn btn-primary">Add to Cart</a>
+          <a id="pr-{{ product.id }}" class="btn btn-primary cart">Add to Cart</a>
          </div>
         </div>
        </div>
@@ -63,3 +63,6 @@
  {% endfor %}
 {% endblock %}
 
+{% block additionJs %}
+ <script src="{% static 'Shop/scripts/shop-index-script.js' %}"></script>
+{% endblock %}

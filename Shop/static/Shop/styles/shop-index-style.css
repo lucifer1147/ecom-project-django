@@ -19,11 +19,11 @@
 }
 
 div.card-img-div > img {
-    max-height: auto;
-    min-height: 100%;
+    /*max-height: auto;*/
+    min-height: 101%;
     min-width: 100%;
 
-    max-width: auto;
+    /*max-width: auto;*/
 }
 
 body .carousel-indicator li {

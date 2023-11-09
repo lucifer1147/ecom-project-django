@@ -40,7 +40,8 @@ def index(request):
 
         slidesLi.append(slides)
 
-    slidesLi = list(item for item in zip(list(products_catwise.keys()), slidesLi))
+    rng = range(1, len(list(products_catwise.keys()))+1)
+    slidesLi = list(item for item in zip(rng, list(products_catwise.keys()), slidesLi))
 
     return render(request, 'Shop/index.html',
                   {'slidesLi': slidesLi}

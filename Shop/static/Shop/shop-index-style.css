@@ -19,8 +19,11 @@
 }
 
 div.card-img-div > img {
-    height: 101%;
-    width: auto;
+    max-height: auto;
+    min-height: 100%;
+    min-width: 100%;
+
+    max-width: auto;
 }
 
 body .carousel-indicator li {
@@ -47,7 +50,7 @@ body .no-padding {
 }
 
 .cat-title {
-    padding-top: 50px;
+    padding-top: 45px;
     text-align: center;
     font-size: xxx-large;
 }
@@ -67,3 +70,27 @@ body .no-padding {
     overflow: hidden;
 }
 
+h4:first-child {
+    margin-top: 30px;
+}
+
+ul.card-tags {
+    padding-left: 0;
+    display: inline-flex;
+    justify-content: start;
+}
+
+ul.card-tags li:first-child {
+    margin-left: 0.1rem;
+}
+
+ul.card-tags li {
+    list-style: none;
+    margin: 0 0.2rem 0;
+    padding: 0 0.5rem 0;
+
+    font-weight: bold;
+    font-size: small;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}

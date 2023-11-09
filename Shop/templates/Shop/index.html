@@ -5,7 +5,8 @@
 {% block CustomStyles %} {% static 'Shop/shop-index-style.css' %} {% endblock %}
 
 {% block MainContent %}
- {% for slides in slidesLi %}
+ {% for cat_title, slides in slidesLi %}
+  <h4 class="cat-title">{{ cat_title|capfirst }}</h4>
   <div id="product-cards" class="carousel slide">
    <div class="carousel-indicators">
     {% for idx, products in slides %}
@@ -49,6 +50,7 @@
    </button>
 
   </div>
+  <hr class="slide-separator">
  {% endfor %}
 {% endblock %}
 

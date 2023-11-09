@@ -11,10 +11,10 @@ def index(request):
     products_catwise = {}
 
     for curProd in productsAll:
-        if curProd.product_category in products_catwise.keys():
-            products_catwise[curProd.product_category].append(curProd)
+        if curProd.product_category.lower() in products_catwise.keys():
+            products_catwise[curProd.product_category.lower()].append(curProd)
         else:
-            products_catwise.update({curProd.product_category: [curProd]})
+            products_catwise.update({curProd.product_category.lower(): [curProd]})
 
     for products in list(products_catwise.values()):
 
@@ -40,11 +40,13 @@ def index(request):
 
         slidesLi.append(slides)
 
+    slidesLi = list(item for item in zip(list(products_catwise.keys()), slidesLi))
+
     return render(request, 'Shop/index.html',
                   {'slidesLi': slidesLi}
                   )
 
-    # return render(request, 'Shop/index_old.html')
+    # return render(request, 'Shop/backup/index_old.html')
 
 
 def about(request):

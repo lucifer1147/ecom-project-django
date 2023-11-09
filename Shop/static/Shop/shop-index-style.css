@@ -40,3 +40,14 @@ body .no-padding {
     width: 67%;
     margin: auto;
 }
+
+.cat-title {
+    padding-top: 50px;
+    text-align: center;
+    font-size: xxx-large;
+}
+
+.slide-separator {
+    position: relative;
+    bottom: -35px;
+}

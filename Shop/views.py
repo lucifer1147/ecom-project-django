@@ -5,31 +5,43 @@ from .models import Product
 
 # Create your views here.
 def index(request):
-    products = list(Product.objects.all())
+    productsAll = list(Product.objects.all())
+    slidesLi = []
 
-    n = len(products) // 4 if len(products) % 4 == 0 else len(products) // 4 + 1
-    idx = list(range(n))
+    products_catwise = {}
 
-    productsLi = []
-    if n > 1:
-        tempLi = []
-        for i in range(len(products)):
-            tempLi.append(products[i])
-            if i == len(products)-1:
-                productsLi.append(tempLi)
-                tempLi = []
-            elif len(tempLi) >= 4:
-                productsLi.append(tempLi)
-                tempLi = []
-    else:
-        productsLi.append(products)
+    for curProd in productsAll:
+        if curProd.product_category in products_catwise.keys():
+            products_catwise[curProd.product_category].append(curProd)
+        else:
+            products_catwise.update({curProd.product_category: [curProd]})
 
-    slides = zip(idx, productsLi)
-    slides = list(item for item in slides)
+    for products in list(products_catwise.values()):
+
+        n = len(products) // 4 if len(products) % 4 == 0 else len(products) // 4 + 1
+        idx = list(range(n))
+
+        productsLi = []
+        if n > 1:
+            tempLi = []
+            for i in range(len(products)):
+                tempLi.append(products[i])
+                if i == len(products)-1:
+                    productsLi.append(tempLi)
+                    tempLi = []
+                elif len(tempLi) >= 4:
+                    productsLi.append(tempLi)
+                    tempLi = []
+        else:
+            productsLi.append(products)
+
+        slides = zip(idx, productsLi)
+        slides = list(item for item in slides)
+
+        slidesLi.append(slides)
 
     return render(request, 'Shop/index.html',
-                  {'slides': slides,
-                   'buttons': idx}
+                  {'slidesLi': slidesLi}
                   )
 
     # return render(request, 'Shop/index_old.html')

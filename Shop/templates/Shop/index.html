@@ -5,43 +5,50 @@
 {% block CustomStyles %} {% static 'Shop/shop-index-style.css' %} {% endblock %}
 
 {% block MainContent %}
- <div id="product-cards" class="carousel slide">
-  <div class="carousel-indicators">
-   {% for idx in buttons %}
-    <button type="button" data-bs-target="#product-cards" data-bs-slide-to="{{ idx }}" {% if idx == 0 %}class="active"
-            aria-current="true"{% endif %} aria-label="Slide {{ idx }}"></button>
-   {% endfor %}
-  </div>
+ {% for slides in slidesLi %}
+  <div id="product-cards" class="carousel slide">
+   <div class="carousel-indicators">
+    {% for idx, products in slides %}
+     <button type="button" data-bs-target="#product-cards" data-bs-slide-to="{{ idx }}" {% if idx == 0 %}class="active"
+             aria-current="true"{% endif %} aria-label="Slide {{ idx }}"></button>
+    {% endfor %}
+   </div>
 
-  <div class="carousel-inner">
-   {% for idx, products in slides %}
-    <div class="carousel-item {% if idx == 0 %}active{% endif %}">
-     {% for product in products %}
-      <div class="col-xs-3 col-sm-3 col-md-3">
-       <div class="card" style="width: 18rem; height: 32rem; overflow: hidden">
-        <div class="card-img-div">
-         <img src="/media/{{ product.product_image }}" class="card-img-top" alt="...">
-        </div>
-        <div class="card-body">
-         <h5 class="card-title">{{ product.product_name }}</h5>
-         <p class="card-text">{{ product.product_description }}</p>
-         <a href="#" class="btn btn-primary">Add to Cart</a>
+   <div class="carousel-inner">
+
+    {% for idx, products in slides %}
+     <div class="carousel-item {% if idx == 0 %}active{% endif %}">
+
+      {% for product in products %}
+       <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="card" style="width: 18rem; height: 32rem; overflow: hidden">
+         <div class="card-img-div">
+          <img src="/media/{{ product.product_image }}" class="card-img-top" alt="...">
+         </div>
+         <div class="card-body">
+          <h5 class="card-title">{{ product.product_name }}</h5>
+          <p class="card-text">{{ product.product_description }}</p>
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+         </div>
         </div>
        </div>
-      </div>
-     {% endfor %}
-    </div>
-   {% endfor %}
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#product-cards" data-bs-slide="prev">
-   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-   <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#product-cards" data-bs-slide="next">
-   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-   <span class="visually-hidden">Next</span>
-  </button>
+      {% endfor %}
 
- </div>
+     </div>
+    {% endfor %}
+
+   </div>
+
+   <button class="carousel-control-prev" type="button" data-bs-target="#product-cards" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+   </button>
+   <button class="carousel-control-next" type="button" data-bs-target="#product-cards" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+   </button>
+
+  </div>
+ {% endfor %}
 {% endblock %}
 

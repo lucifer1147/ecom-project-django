@@ -47,24 +47,23 @@ def index(request):
                   {'slidesLi': slidesLi}
                   )
 
-    # return render(request, 'Shop/backup/index_old.html')
-
 
 def about(request):
     return render(request, 'Shop/about.html')
 
 
 def contact(request):
-    post = request.POST
-    name = str(post.get('f-name')) + " " + str(request.POST.get('l-name'))
-    email = str(post.get('email'))
-    phone = str(post.get('phone'))
+    if request.method == 'POST':
+        post = request.POST
+        name = str(post.get('f-name')) + " " + str(request.POST.get('l-name'))
+        email = str(post.get('email'))
+        phone = str(post.get('phone'))
 
-    pic = post.get('uploaded-pic')
-    issue = str(post.get('issue'))
+        pic = post.get('uploaded-pic')
+        issue = str(post.get('issue'))
 
-    updates = post.get('updates')
-    print(name, email, phone, pic, issue, updates, sep='\n')
+        updates = post.get('updates', 'no')
+        print(name, email, phone, pic, issue, updates, sep='\n')
     return render(request, 'Shop/contact.html')
 
 
@@ -94,17 +93,18 @@ def checkout(request):
 
 
 def postreview(request, prodid):
-    post = request.POST
+    if request.method == 'POST':
+        post = request.POST
 
-    username = str(post.get('UserName', 'Anonymous'))
-    useremail = str(post.get('UserEmail'))
-    review = str(post.get('ReviewContent'))
-    rating = int(post.get('rating-radio', '0'))
-    image = post.get('reviewimage')
+        username = str(post.get('UserName', 'Anonymous'))
+        useremail = str(post.get('UserEmail'))
+        review = str(post.get('ReviewContent'))
+        rating = int(post.get('rating-radio', '0'))
+        image = post.get('reviewimage')
 
-    rev = Review.objects.create(review_user=username, review_user_email=useremail, review_user_location="",
-                                review=review, ratings=rating, review_product=Product.objects.filter(id=prodid)[0],
-                                review_image=image)
-    rev.save()
+        rev = Review.objects.create(review_user=username, review_user_email=useremail, review_user_location="",
+                                    review=review, ratings=rating, review_product=Product.objects.filter(id=prodid)[0],
+                                    review_image=image)
+        rev.save()
 
     return redirect(f'/shop/product/{prodid}#rev-cont')

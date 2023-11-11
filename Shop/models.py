@@ -11,12 +11,29 @@ class Product(models.Model):
 
     product_category = models.CharField(max_length=50, default="")
     product_subCategory = models.CharField(max_length=50, default="")
-    product_description = models.CharField(max_length=1000, default="")
+    product_description = models.TextField(default="")
 
     product_publishDate = models.DateField()
 
     def __str__(self):
         return self.product_name
+
+
+class Contact(models.Model):
+    class GetUpdates(models.TextChoices):
+        yes = "yes", ("yes")
+        no = "no", ("no")
+
+    contact_id = models.AutoField(primary_key=True)
+
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=70)
+    phone = models.CharField(max_length=14)
+
+    pic = models.ImageField(upload_to='Shop/images/contact/')
+    query = models.TextField()
+
+    getUpdates = models.CharField(choices=GetUpdates.choices, default=GetUpdates.no, max_length=3)
 
 
 class Review(models.Model):
@@ -33,7 +50,7 @@ class Review(models.Model):
     review_user_location = models.CharField(max_length=100, default="")
 
     review_date = models.DateField(default=timezone.now)
-    review = models.CharField(max_length=1000, default="")
+    review = models.TextField(default="")
 
     ratings = models.IntegerField(choices=ReviewRating.choices, default=ReviewRating.AVERAGE)
     review_product = models.ForeignKey(Product, on_delete=models.CASCADE)

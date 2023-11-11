@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Product
+from .models import Product, Review
 
 
 # Create your views here.
@@ -55,6 +55,16 @@ def about(request):
 
 
 def contact(request):
+    post = request.POST
+    name = str(post.get('f-name')) + " " + str(request.POST.get('l-name'))
+    email = str(post.get('email'))
+    phone = str(post.get('phone'))
+
+    pic = post.get('uploaded-pic')
+    issue = str(post.get('issue'))
+
+    updates = post.get('updates')
+    print(name, email, phone, pic, issue, updates, sep='\n')
     return render(request, 'Shop/contact.html')
 
 
@@ -68,13 +78,33 @@ def search(request):
 
 def product(request, id):
     curProduct = Product.objects.filter(id=id)[0]
+
     offerrange = list(range(1, 8))
     detailsrange = list(range(1, 15))
-    reviewsrange = list(range(1, 20))
+
+    reviews = Review.objects.filter(review_product=curProduct)
+
     return render(request, 'Shop/product.html',
                   {'product': curProduct, 'offerrange': offerrange, 'detailsrange': detailsrange,
-                   'reviewsrange': reviewsrange})
+                   'reviewsrange': reviews, 'range': range})
 
 
 def checkout(request):
     return render(request, 'Shop/checkout.html')
+
+
+def postreview(request, prodid):
+    post = request.POST
+
+    username = str(post.get('UserName', 'Anonymous'))
+    useremail = str(post.get('UserEmail'))
+    review = str(post.get('ReviewContent'))
+    rating = int(post.get('rating-radio', '0'))
+    image = post.get('reviewimage')
+
+    rev = Review.objects.create(review_user=username, review_user_email=useremail, review_user_location="",
+                                review=review, ratings=rating, review_product=Product.objects.filter(id=prodid)[0],
+                                review_image=image)
+    rev.save()
+
+    return redirect(f'/shop/product/{prodid}#rev-cont')

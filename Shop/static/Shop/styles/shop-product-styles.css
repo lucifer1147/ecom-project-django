@@ -81,4 +81,39 @@ ul.product-tags > li:first-child {
     margin-left: 5px;
 }
 
+#idk {
+    height: 100px;
+}
 
+.give-review {
+    margin-bottom: 40px;
+}
+
+.rating-form-check {
+    display: none;
+}
+
+.rating-form-check ~ .fa-solid.fa-star, .rating-form-check:checked ~ .fa-regular.fa-star {
+    display: none;
+}
+
+.rating-form-check:checked ~ .fa-solid.fa-star, .rating-form-check ~ .fa-regular.fa-star {
+    display: inline-block;
+}
+
+#rating-row * {
+    marign: 0;
+    padding: 0;
+}
+
+#rating-row #head {
+    margin-right: 20px;
+}
+
+#rating-row {
+    margin: 10px 0;
+}
+
+.review {
+    margin: 15px 0;
+}

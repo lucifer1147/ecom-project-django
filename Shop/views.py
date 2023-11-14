@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Product, Review
+from .models import Product, Review, Contact
 
 
 # Create your views here.
@@ -63,7 +63,10 @@ def contact(request):
         issue = str(post.get('issue'))
 
         updates = post.get('updates', 'no')
-        print(name, email, phone, pic, issue, updates, sep='\n')
+
+        issue = Contact.objects.create(name=name, email=email, phone=phone, pic=pic, query=issue, getUpdates=updates)
+        issue.save()
+
     return render(request, 'Shop/contact.html')
 
 
@@ -99,11 +102,11 @@ def postreview(request, prodid):
         username = str(post.get('UserName', 'Anonymous'))
         useremail = str(post.get('UserEmail'))
         review = str(post.get('ReviewContent'))
-        rating = int(post.get('rating-radio', '0'))
+        rating = int(post.get('rating-radio', '-1'))
         image = post.get('reviewimage')
 
         rev = Review.objects.create(review_user=username, review_user_email=useremail, review_user_location="",
-                                    review=review, ratings=rating, review_product=Product.objects.filter(id=prodid)[0],
+                                    review=review, ratings=rating+1, review_product=Product.objects.filter(id=prodid)[0],
                                     review_image=image)
         rev.save()
 

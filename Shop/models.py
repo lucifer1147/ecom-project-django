@@ -35,6 +35,9 @@ class Contact(models.Model):
 
     getUpdates = models.CharField(choices=GetUpdates.choices, default=GetUpdates.no, max_length=3)
 
+    def __str__(self):
+        return self.name + "-" + str(self.contact_id)
+
 
 class Review(models.Model):
     class ReviewRating(models.IntegerChoices):

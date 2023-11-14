@@ -8,9 +8,14 @@ $('.cart').click(function () {
 
     localStorage.setItem('cart', JSON.stringify(cart))
 
-    var items = Object.keys(cart).length
+    var items = 0;
+    for (const [item, count] of Object.entries(cart)) {
+        items = items + count;
+    }
+
     if (items > 9) {
         items = '9+'
     }
+
     document.getElementById('cart-count').innerHTML = items
 })

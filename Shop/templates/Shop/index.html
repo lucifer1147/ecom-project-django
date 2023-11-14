@@ -37,7 +37,9 @@
            </ul>
            <h5 class="card-title">{{ product.product_name }}</h5>
            <p class="card-text">{{ product.product_description }}</p>
-           <a id="pr-{{ product.id }}" class="btn btn-primary cart">Add to Cart</a>
+           <span class="btn-group sp-pr-btn-grp" id="sp-pr-{{ product.id }}">
+            <a id="pr-{{ product.id }}" class="btn btn-primary cart cart-plus">Add to Cart</a>
+           </span>
            <a id="vd-{{ product.id }}" class="btn btn-primary" href="/shop/product/{{ product.id }}">View Details</a>
           </div>
          </div>

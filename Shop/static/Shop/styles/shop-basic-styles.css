@@ -1,0 +1,24 @@
+div.cart-item-row {
+    display: grid;
+    height: 100px;
+    widht: 100%;
+
+    grid-template-columns: 10% 40% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+.sr-no {
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+
+.prd-img {
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
+
+.cart-desc {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+

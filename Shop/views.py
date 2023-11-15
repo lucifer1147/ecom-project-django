@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Product, Review, Contact
 
 
@@ -111,3 +111,14 @@ def postreview(request, prodid):
         rev.save()
 
     return redirect(f'/shop/product/{prodid}#rev-cont')
+
+
+def getdetails(request, prodid):
+    prod = Product.objects.filter(id=prodid)[0]
+
+    response = {
+        'name': prod.product_name,
+        'image': str(prod.product_image),
+        'price': prod.product_price,
+    }
+    return JsonResponse(response)

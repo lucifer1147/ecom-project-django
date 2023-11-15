@@ -12,17 +12,37 @@ div.cart-item-row {
     grid-row: 1/3;
 }
 
-.prd-img {
-    grid-column: 2/3;
-    grid-row: 1/3;
-}
-
 .cart-desc {
     grid-column: 3/4;
     grid-row: 1/2;
+
+    font-size: large;
 }
 
 .offcanvas-btngrp {
     grid-column: 3/4;
     grid-row: 2/3;
+}
+
+.cart-disabled {
+    pointer-events: none;
+}
+
+.btn-group {
+    width: 107.6px;
+    height: 37.8px;
+}
+
+div.cart-item-img {
+    overflow: hidden;
+    grid-column: 2/3;
+    grid-row: 1/3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.cart-item-img img {
+    height: 100%;
 }

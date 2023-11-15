@@ -1,16 +1,3 @@
-// const updateAddButtons = (cart) => {
-//     if (cart == null){
-//         cart = {};
-//     }
-//     for (const [item, count] of Object.entries(cart)) {
-//         document.getElementById(`sp-${item}`).innerHTML = `<a class="btn btn-primary cart cart-minus" id="minus-${item}">-</a>
-//                                                             <button class="val-btn btn btn-light disabled" id="val-${item}">${count}</button>
-//                                                             <a class="btn btn-primary cart cart-plus" id="plus-${item}">+</a>`;
-//     }
-//
-//     localStorage.setItem('cart', JSON.stringify(cart));
-// }
-
 setInterval(updateAddButtons(cart), 10);
 
 $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
@@ -20,6 +7,7 @@ $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
     cart[prId] = Math.max(0, cart[prId] - 1);
 
     updateAddButtons(cart);
+    updateProdDict();
 })
 
 $('.sp-pr-btn-grp').on("click", "a.cart-plus", function () {
@@ -33,6 +21,7 @@ $('.sp-pr-btn-grp').on("click", "a.cart-plus", function () {
     }
 
     updateAddButtons(cart);
+    updateProdDict();
 })
 
 
@@ -50,5 +39,6 @@ $('.sp-pr-btn-grp').on('click', '.cart', function () {
     }
 
     updateAddButtons(cart);
+    updateProdDict();
     document.getElementById('cart-count').innerHTML = items;
 })

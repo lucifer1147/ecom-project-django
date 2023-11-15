@@ -4,7 +4,7 @@ if (localStorage.getItem('cart') == null) {
 
 var cart = JSON.parse(localStorage.getItem('cart'));
 
-for (const[item, count] of Object.entries(cart)) {
+for (const [item, count] of Object.entries(cart)) {
     if (count <= 0) {
         delete cart[item]
     }
@@ -35,7 +35,7 @@ const updateAddButtons = (cart) => {
     for (const [item, count] of Object.entries(cart)) {
         if (count > 0) {
             document.getElementById(`sp-${item}`).innerHTML = `<a class="btn btn-primary cart cart-minus" id="minus-${item}">-</a>
-                                                            <button class="val-btn btn btn-light disabled" id="val-${item}">${count}</button>
+                                                            <button class="val-btn btn btn-light cart-disabled" id="val-${item}"><strong>${count}</strong></button>
                                                             <a class="btn btn-primary cart cart-plus" id="plus-${item}">+</a>`;
         } else {
             document.getElementById(`sp-${item}`).innerHTML = `<a id="${item}" class="btn btn-primary cart cart-plus">Add to Cart</a>`;
@@ -48,6 +48,31 @@ const updateAddButtons = (cart) => {
 const updateCart = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart))
 }
+
+var prodDict = {}
+const updateProdDict = () => {
+    for (const [item, count] of Object.entries(cart)) {
+        if (count > 0) {
+            let idNum = item.split('-')
+            idNum = idNum[idNum.length - 1]
+
+            $.ajax({
+                url: `/shop/prod-details/${idNum}`,
+                success: function (result) {
+                    prodDict[`pr-${idNum}`] = result
+                }
+            })
+        }
+    }
+
+    for (const [item, details] of Object.entries(prodDict)) {
+        if (cart[item] == 0) {
+            delete prodDict[item]
+        }
+    }
+}
+
+updateProdDict()
 
 const updateCartOffCanvas = () => {
     dropdownBtn = document.getElementById('cart-offcanvas-dropdownMenuButton')
@@ -74,25 +99,27 @@ const updateCartOffCanvas = () => {
         if (count > 0) {
             cnt = `<div class="row cart-item-row">`;
             cnt = cnt + `<div class="sr-no">${i}</div>`
-            cnt = cnt + `<img src="..." alt="..." class="prd-img">`
+            cnt = cnt + `<div class="cart-item-img"><img src="/media/${prodDict[item]['image']}" alt="..." class="prd-img"></div>`
             cnt = cnt + `<div class="cart-desc">
-                          Name: ${item}
-                         </div>`
+                                 <strong>${prodDict[item]['name']}</strong>
+                                 </div>`
 
             cnt = cnt + `<div class="btn-group offcanvas-btngrp" id="btg-${item}">
                           <a class="btn btn-primary cart offcanvas-cart-minus" id="offcanvas-minus-${item}">-</a>
-                          <button class="val-btn btn btn-light disabled" id="offcanvas-val-${item}">${count}</button>
+                          <button class="val-btn btn btn-light cart-disabled" id="offcanvas-val-${item}"><strong>${count}</strong></button>
                           <a class="btn btn-primary cart offcanvas-cart-plus" id="offcanvas-plus-${item}">+</a>                     
                          </div>`
 
             cnt = cnt + `</div>`
             content = content + cnt;
-
             i++;
+
         }
     }
 
     document.getElementById('cart-offcanvas-body').innerHTML = content;
+
+
 
     $('.offcanvas-btngrp').on('click', '.offcanvas-cart-minus', function () {
         let prId = this.id.split("-");
@@ -103,6 +130,7 @@ const updateCartOffCanvas = () => {
         updateCart(cart);
         updateAddButtons(cart);
         updateCartCount(cart)
+        updateProdDict();
         updateCartOffCanvas();
     })
 
@@ -115,19 +143,20 @@ const updateCartOffCanvas = () => {
         updateCart(cart);
         updateAddButtons(cart);
         updateCartCount(cart)
+        updateProdDict();
         updateCartOffCanvas();
     })
 
     $('#close-cart').click(function () {
         updateCart(cart);
         updateAddButtons(cart);
-        updateCartCount(cart)
+        updateCartCount(cart);
+        updateProdDict();
         updateCartOffCanvas();
     })
 }
 
 $('.navbar').on('click', '#cart-button', function () {
-    updateCartOffCanvas()
+    updateProdDict();
+    updateCartOffCanvas();
 })
-
-// setInterval(updateCartOffCanvas(), 100)

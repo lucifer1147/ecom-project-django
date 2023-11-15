@@ -19,12 +19,6 @@ $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
 
     cart[prId] = Math.max(0, cart[prId] - 1);
 
-
-    if (cart[prId] == 0) {
-        delete cart[prId];
-        document.getElementById(`sp-${prId}`).innerHTML = `<a id="pr-${prId.slice(3,)}" class="btn btn-primary cart cart-plus">Add to Cart</a>`;
-    };
-
     updateAddButtons(cart);
 })
 

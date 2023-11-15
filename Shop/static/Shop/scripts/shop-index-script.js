@@ -1,15 +1,15 @@
-const updateAddButtons = (cart) => {
-    if (cart == null){
-        cart = {};
-    }
-    for (const [item, count] of Object.entries(cart)) {
-        document.getElementById(`sp-${item}`).innerHTML = `<a class="btn btn-primary cart cart-minus" id="minus-${item}">-</a>
-                                                            <button class="val-btn btn btn-light disabled" id="val-${item}">${count}</button>
-                                                            <a class="btn btn-primary cart cart-plus" id="plus-${item}">+</a>`;
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+// const updateAddButtons = (cart) => {
+//     if (cart == null){
+//         cart = {};
+//     }
+//     for (const [item, count] of Object.entries(cart)) {
+//         document.getElementById(`sp-${item}`).innerHTML = `<a class="btn btn-primary cart cart-minus" id="minus-${item}">-</a>
+//                                                             <button class="val-btn btn btn-light disabled" id="val-${item}">${count}</button>
+//                                                             <a class="btn btn-primary cart cart-plus" id="plus-${item}">+</a>`;
+//     }
+//
+//     localStorage.setItem('cart', JSON.stringify(cart));
+// }
 
 setInterval(updateAddButtons(cart), 10);
 

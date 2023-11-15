@@ -55,7 +55,7 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
    </form>
    <a type="button" class="btn btn-outline-light nav-item" href="#cart-offcanvas" style="margin-left: 10px;"
-      role="button" aria-controls="cart-offcanvas" data-bs-toggle="offcanvas">
+      role="button" aria-controls="cart-offcanvas" data-bs-toggle="offcanvas" id="cart-button">
     <strong>
      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
           viewBox="0 0 16 16">
@@ -82,7 +82,7 @@
  <div class="offcanvas offcanvas-start" tabindex="-1" id="cart-offcanvas" aria-labelledby="cart-offcanvas-title">
   <div class="offcanvas-header">
    <h5 class="offcanvas-title" id="cart-offcanvas-title">Items in Your Cart</h5>
-   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   <button type="button" class="btn-close text-reset" id="close-cart" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
    <div id="cart-offcanvas-body">
@@ -114,6 +114,9 @@
         crossorigin="anonymous"></script>
 
 <script src="{% static 'Shop/scripts/shop-basic-script.js' %}"></script>
+
+<script>
+</script>
 
 {% block additionJs %} {% endblock %}
 </body>

@@ -11,6 +11,20 @@ h1:first-of-type {
 }
 
 .action-buttons {
+    padding: 0;
+}
+
+.btn-group {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.btn-group button {
+    border: 1px solid gray;
+}
+
+.action-buttons {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;

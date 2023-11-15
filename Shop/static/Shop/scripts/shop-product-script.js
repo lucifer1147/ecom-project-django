@@ -17,3 +17,19 @@ $('#reset-review').click(function () {
     $(`label.fa-solid.fa-star`).attr('style', 'display: none;');
     $(`label.fa-regular.fa-star`).attr('style', 'display: inline-block;');
 })
+
+var product_id = document.getElementById('prod-id-sp').innerHTML
+cart = JSON.parse(localStorage.getItem('cart'))
+
+$('.buy-add-item').on('click', '.plus-item', function () {
+    if (cart[`pr-${product_id}`] != undefined) {
+        cart[`pr-${product_id}`] = cart[`pr-${product_id}`] + 1
+    } else {
+        cart[`pr-${product_id}`] = 1;
+    }
+
+    updateCart(cart);
+    updateCartCount(cart);
+    updateProdDict();
+    updateCartOffCanvas();
+})

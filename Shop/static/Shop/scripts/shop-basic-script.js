@@ -12,6 +12,17 @@ for (const [item, count] of Object.entries(cart)) {
     localStorage.setItem('cart', JSON.stringify(cart))
 }
 
+const clearCart = () => {
+    cart = {}
+    localStorage.setItem('cart', JSON.stringify({}))
+
+    updateCart(cart);
+    updateAddButtons(cart);
+    updateCartCount(cart)
+    updateProdDict();
+    updateCartOffCanvas();
+}
+
 const updateCartCount = (cart) => {
     var items = 0;
     for (const [item, count] of Object.entries(cart)) {
@@ -27,10 +38,8 @@ const updateCartCount = (cart) => {
 
 updateCartCount(cart)
 
-const updateAddButtons = (cart) => {
-    if (cart == null) {
-        cart = {};
-    }
+const updateAddButtons = () => {
+    console.log('updating')
 
     for (const [item, count] of Object.entries(cart)) {
         if (count > 0) {
@@ -84,10 +93,14 @@ const updateCartOffCanvas = () => {
 
     if (itc <= 0) {
         offCanvasHeading = "You have no items in your cart. Add some to get started.";
-        dropdownBtn.classList.add('disabled')
+        for (elem of Array.from(dropdownBtn.parentElement.children[1].children)) {
+            elem.children[0].classList.add('disabled')
+        }
     } else {
         offCanvasHeading = "Items in your Cart:"
-        dropdownBtn.classList.remove('disabled')
+        for (elem of Array.from(dropdownBtn.parentElement.children[1].children)) {
+            elem.children[0].classList.remove('disabled')
+        }
     }
 
     document.getElementById('cart-offcanvas-title').innerHTML = offCanvasHeading;
@@ -120,7 +133,6 @@ const updateCartOffCanvas = () => {
     document.getElementById('cart-offcanvas-body').innerHTML = content;
 
 
-
     $('.offcanvas-btngrp').on('click', '.offcanvas-cart-minus', function () {
         let prId = this.id.split("-");
         prId = "pr-" + prId[prId.length - 1];
@@ -128,7 +140,7 @@ const updateCartOffCanvas = () => {
         cart[prId] = Math.max(0, cart[prId] - 1);
 
         updateCart(cart);
-        updateAddButtons(cart);
+        // updateAddButtons(cart);
         updateCartCount(cart)
         updateProdDict();
         updateCartOffCanvas();
@@ -141,7 +153,7 @@ const updateCartOffCanvas = () => {
         cart[prId] = cart[prId] + 1
 
         updateCart(cart);
-        updateAddButtons(cart);
+        // updateAddButtons(cart);
         updateCartCount(cart)
         updateProdDict();
         updateCartOffCanvas();
@@ -149,10 +161,14 @@ const updateCartOffCanvas = () => {
 
     $('#close-cart').click(function () {
         updateCart(cart);
-        updateAddButtons(cart);
+        // updateAddButtons(cart);
         updateCartCount(cart);
         updateProdDict();
         updateCartOffCanvas();
+    })
+
+    $('.cart-dropdown').on('click', 'a.clear-cart', function () {
+        clearCart()
     })
 }
 

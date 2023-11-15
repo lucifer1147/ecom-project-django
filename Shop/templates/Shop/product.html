@@ -18,16 +18,16 @@
     </div>
 
     <div class="row action-buttons">
-     <div class="btn-group">
+     <div class="btn-group buy-add-item">
       <button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
-      <button class="btn btn-light text-dark col-md-6"><strong>Add To Cart</strong></button>
+      <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>
      </div>
     </div>
 
    </div>
 
    <div class="col-md-8">
-    <h1 class="display-4" id="ProductHead"><strong>{{ product.product_name }}</strong></h1>
+    <h1 class="display-4" id="ProductHead"><strong>{{ product.product_name }}</strong><span id="prod-id-sp" style="display: none">{{ product.id }}</span></h1>
     <ul class="product-tags">
      {% for tag in product.product_subCategory|split:"," %}
       <li>{{ tag }}</li>

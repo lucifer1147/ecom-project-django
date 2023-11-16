@@ -18,8 +18,6 @@ $('#reset-review').click(function () {
     $(`label.fa-regular.fa-star`).attr('style', 'display: inline-block;');
 })
 
-// cart = JSON.parse(localStorage.getItem('cart'))
-
 var product_id = document.getElementById('prod-id-sp').innerHTML;
 var cart = JSON.parse(localStorage.getItem('cart'));
 

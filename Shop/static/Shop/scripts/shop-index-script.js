@@ -1,7 +1,6 @@
 updateAddButtons(cart)
 
 $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
-    console.log('cl')
     let prId = this.id.split("-");
     prId = "pr-" + prId[prId.length - 1];
 
@@ -12,7 +11,6 @@ $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
 })
 
 $('.sp-pr-btn-grp').on("click", "a.cart-plus", function () {
-    console.log('ic')
     let prId = this.id.split("-");
     prId = "pr-" + prId[prId.length - 1];
 

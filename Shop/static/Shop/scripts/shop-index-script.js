@@ -1,5 +1,3 @@
-updateAddButtons(cart)
-
 $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
     let prId = this.id.split("-");
     prId = "pr-" + prId[prId.length - 1];
@@ -20,8 +18,7 @@ $('.sp-pr-btn-grp').on("click", "a.cart-plus", function () {
         cart[prId] = 1;
     }
 
-    updateAddButtons(cart);
-    updateProdDict();
+    updateAll(lct)
 })
 
 
@@ -38,7 +35,5 @@ $('.sp-pr-btn-grp').on('click', '.cart', function () {
         items = '9+';
     }
 
-    updateAddButtons(cart);
-    updateProdDict();
-    document.getElementById('cart-count').innerHTML = items;
+    updateAll(lct)
 })

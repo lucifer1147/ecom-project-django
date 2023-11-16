@@ -46,3 +46,8 @@ div.cart-item-img {
 div.cart-item-img img {
     height: 100%;
 }
+
+div.dropdown.mt-5 {
+    display: flex;
+    justify-content: center;
+}

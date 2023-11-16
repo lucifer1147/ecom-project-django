@@ -62,6 +62,8 @@ const updateProdDict = () => {
     }
 }
 
+setInterval(updateProdDict, 100)
+
 const updateButtonsProd = (cart) => {
     if (Object.keys(cart).includes(`pr-${product_id}`) && cart[`pr-${product_id}`] > 0) {
         var count = cart[`pr-${product_id}`];
@@ -133,17 +135,7 @@ const updateCartOffCanvas = () => {
         prId = "pr-" + prId[prId.length - 1];
         cart[prId] = Math.max(0, cart[prId] - 1);
 
-        updateCart(cart);
-
-        if (lct[lct.length - 1] == 'shop') {
-            updateAddButtons(cart);
-        } else if (lct[lct.length - 2] == 'product') {
-            updateButtonsProd(cart);
-        }
-
-        updateCartCount(cart);
-        updateProdDict();
-        updateCartOffCanvas();
+        updateAll(lct);
     })
 
     $('.offcanvas-btngrp').on('click', '.offcanvas-cart-plus', function () {
@@ -151,34 +143,28 @@ const updateCartOffCanvas = () => {
         prId = "pr-" + prId[prId.length - 1];
         cart[prId] = cart[prId] + 1;
 
-        updateCart(cart);
-
-        if (lct[lct.length - 1] == 'shop') {
-            updateAddButtons(cart);
-        } else if (lct[lct.length - 2] == 'product') {
-            updateButtonsProd(cart);
-        }
-
-        updateCartCount(cart);
-        updateProdDict();
-        updateCartOffCanvas();
+        updateAll(lct);
     })
 
     $('#close-cart').click(function () {
-        updateCart(cart);
-        if (lct[lct.length - 1] == 'shop') {
-            updateAddButtons(cart);
-        } else if (lct[lct.length - 2] == 'product') {
-            updateButtonsProd(cart);
-        }
-        updateCartCount(cart);
-        updateProdDict();
-        updateCartOffCanvas();
+        updateAll(lct);
     })
 
     $('.cart-dropdown').on('click', 'a.clear-cart', function () {
         clearCart();
     })
+}
+
+const updateAll = (lct) => {
+    updateCart(cart);
+    updateCartCount(cart);
+    updateProdDict();
+    if (lct[lct.length - 1] == 'shop') {
+        updateAddButtons(cart);
+    } else if (lct[lct.length - 2] == 'product') {
+        updateButtonsProd(cart);
+    }
+    updateCartOffCanvas();
 }
 
 
@@ -203,10 +189,8 @@ for (const [item, count] of Object.entries(cart)) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-updateCartCount(cart);
-updateProdDict();
+updateAll(lct);
 
 $('.navbar').on('click', '#cart-button', function () {
-    updateProdDict();
-    updateCartOffCanvas();
+    updateAll(lct);
 })

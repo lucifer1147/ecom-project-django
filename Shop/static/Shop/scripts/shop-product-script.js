@@ -30,19 +30,11 @@ $('.buy-add-item').on('click', '.plus-item', function () {
         cart[`pr-${product_id}`] = 1;
     }
 
-    updateCart(cart);
-    updateCartCount(cart);
-    updateProdDict();
-    updateButtonsProd(cart);
-    updateCartOffCanvas();
+    updateAll(lct);
 })
 
 $('.buy-add-item').on('click', '.minus-item', function () {
     cart[`pr-${product_id}`] = Math.max(0, cart[`pr-${product_id}`] - 1);
 
-    updateCart(cart);
-    updateCartCount(cart);
-    updateProdDict();
-    updateButtonsProd(cart);
-    updateCartOffCanvas();
+    updateAll(lct);
 })

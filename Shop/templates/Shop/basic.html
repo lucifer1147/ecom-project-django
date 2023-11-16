@@ -12,7 +12,7 @@
 
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-{# <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css”/>#}
+ {# <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css”/>#}
  <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.css' %}">
  <link rel="stylesheet" href="{% static 'Shop/styles/shop-basic-styles.css' %}">
  <link rel="stylesheet" href="{% block CustomStyles %} {% static 'Shop/default.css' %} {% endblock %}">
@@ -20,54 +20,54 @@
 
 <body>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
- <div class="container-fluid">
-  <a class="navbar-brand" href="#">EComProj</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-     <a class="nav-link active" aria-current="page" href="/shop">Home</a>
-    </li>
-    <li class="nav-item dropdown">
-     <a type="button" class="btn nav-link position-relative dropdown-toggle" data-bs-toggle="dropdown"
-        aria-expanded="false" role="button">
-      Your Orders
-     </a>
-     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/shop/track">Track Your Orders</a></li>
-      <li><a class="dropdown-item" href="/shop/history">View Order History</a></li>
-      <li>
-       <hr class="dropdown-divider">
-      </li>
-      <li><a class="dropdown-item" href="/shop/contact">Contact Us</a></li>
-     </ul>
-    </li>
-    <li class="nav-item">
-     <a class="nav-link" href="/shop/about">About Us</a>
-    </li>
-   </ul>
-   <form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-   </form>
-   <a type="button" class="btn btn-outline-light nav-item" href="#cart-offcanvas" style="margin-left: 10px;"
-      role="button" aria-controls="cart-offcanvas" data-bs-toggle="offcanvas" id="cart-button">
-    <strong>
-     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
-          viewBox="0 0 16 16">
-      <path
-        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-     </svg>
-     Cart</strong> <span class="badge bg-light text-dark" id="cart-count"></span>
-   </a>
+ <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+  <div class="container-fluid">
+   <a class="navbar-brand" href="#">EComProj</a>
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/shop">Home</a>
+     </li>
+     <li class="nav-item dropdown">
+      <a type="button" class="btn nav-link position-relative dropdown-toggle" data-bs-toggle="dropdown"
+         aria-expanded="false" role="button">
+       Your Orders
+      </a>
+      <ul class="dropdown-menu">
+       <li><a class="dropdown-item" href="/shop/track">Track Your Orders</a></li>
+       <li><a class="dropdown-item" href="/shop/history">View Order History</a></li>
+       <li>
+        <hr class="dropdown-divider">
+       </li>
+       <li><a class="dropdown-item" href="/shop/contact">Contact Us</a></li>
+      </ul>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="/shop/about">About Us</a>
+     </li>
+    </ul>
+    <form class="d-flex" role="search">
+     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+     <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <a type="button" class="btn btn-outline-light nav-item" href="#cart-offcanvas" style="margin-left: 10px;"
+       role="button" aria-controls="cart-offcanvas" data-bs-toggle="offcanvas" id="cart-button">
+     <strong>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
+           viewBox="0 0 16 16">
+       <path
+         d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </svg>
+      Cart</strong> <span class="badge bg-light text-dark" id="cart-count"></span>
+    </a>
+   </div>
   </div>
- </div>
-</nav>
-<br>
+ </nav>
+ <br>
 
  {% block HeaderContent %} {% endblock %}
 </header>
@@ -82,18 +82,20 @@
  <div class="offcanvas offcanvas-start" tabindex="-1" id="cart-offcanvas" aria-labelledby="cart-offcanvas-title">
   <div class="offcanvas-header">
    <h5 class="offcanvas-title" id="cart-offcanvas-title">Items in Your Cart</h5>
-   <button type="button" class="btn-close text-reset" id="close-cart" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   <button type="button" class="btn-close text-reset" id="close-cart" data-bs-dismiss="offcanvas"
+           aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
    <div id="cart-offcanvas-body"></div>
-   <div class="dropdown mt-3">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="cart-offcanvas-dropdownMenuButton" data-bs-toggle="dropdown">
-     Dropdown button
+   <hr>
+   <div class="dropdown mt-5">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="cart-offcanvas-dropdownMenuButton"
+            data-bs-toggle="dropdown">
+     <strong>Cart Actions</strong>
     </button>
     <ul class="dropdown-menu cart-dropdown" aria-labelledby="dropdownMenuButton">
      <li><a class="dropdown-item clear-cart" href="#">Clear Cart</a></li>
-     <li><a class="dropdown-item">Another action</a></li>
-     <li><a class="dropdown-item">Something else here</a></li>
+     <li><a class="dropdown-item" href="/shop/checkout">Checkout</a></li>
     </ul>
    </div>
   </div>

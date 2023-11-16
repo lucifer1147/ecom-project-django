@@ -18,8 +18,12 @@ $('#reset-review').click(function () {
     $(`label.fa-regular.fa-star`).attr('style', 'display: inline-block;');
 })
 
-var product_id = document.getElementById('prod-id-sp').innerHTML
-cart = JSON.parse(localStorage.getItem('cart'))
+// cart = JSON.parse(localStorage.getItem('cart'))
+
+var product_id = document.getElementById('prod-id-sp').innerHTML;
+var cart = JSON.parse(localStorage.getItem('cart'));
+
+updateButtonsProd(cart);
 
 $('.buy-add-item').on('click', '.plus-item', function () {
     if (cart[`pr-${product_id}`] != undefined) {
@@ -31,5 +35,16 @@ $('.buy-add-item').on('click', '.plus-item', function () {
     updateCart(cart);
     updateCartCount(cart);
     updateProdDict();
+    updateButtonsProd(cart);
+    updateCartOffCanvas();
+})
+
+$('.buy-add-item').on('click', '.minus-item', function () {
+    cart[`pr-${product_id}`] = Math.max(0, cart[`pr-${product_id}`] - 1);
+
+    updateCart(cart);
+    updateCartCount(cart);
+    updateProdDict();
+    updateButtonsProd(cart);
     updateCartOffCanvas();
 })

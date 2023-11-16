@@ -2,6 +2,12 @@ if (localStorage.getItem('cart') == null) {
     localStorage.setItem('cart', "{}");
 }
 
+var lct = window.location.href.split('/').filter(function (val) {
+    if (val != '') {
+        return true
+    }
+})
+
 var cart = JSON.parse(localStorage.getItem('cart'));
 
 for (const [item, count] of Object.entries(cart)) {
@@ -83,6 +89,24 @@ const updateProdDict = () => {
 
 updateProdDict()
 
+const updateButtonsProd = (cart) => {
+    // console.log(Object.keys(cart).includes(`pr-${product_id}`))
+    if (Object.keys(cart).includes(`pr-${product_id}`) && cart[`pr-${product_id}`] > 0) {
+        var count = cart[`pr-${product_id}`];
+        var item = `pr-${product_id}`
+        var cnt = `<a class="btn btn-primary cart minus-item" id="minus-item-${item}">-</a>
+                   <button class="val-btn btn btn-light cart-disabled" id="val-item-${item}"><strong>${count}</strong></button>
+                   <a class="btn btn-primary cart plus-item" id="plus-item-${item}">+</a>`
+
+        console.log(document.getElementById('b-a-it').innerHTML = cnt)
+    } else {
+        var cnt = `<button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
+                   <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>`
+        console.log(document.getElementById('b-a-it').innerHTML = cnt)
+    }
+
+}
+
 const updateCartOffCanvas = () => {
     dropdownBtn = document.getElementById('cart-offcanvas-dropdownMenuButton')
 
@@ -140,7 +164,11 @@ const updateCartOffCanvas = () => {
         cart[prId] = Math.max(0, cart[prId] - 1);
 
         updateCart(cart);
-        // updateAddButtons(cart);
+        if (lct[lct.length - 1] == 'shop') {
+            updateAddButtons(cart);
+        } else if (lct[lct.length - 2] == 'product') {
+            updateButtonsProd(cart)
+        }
         updateCartCount(cart)
         updateProdDict();
         updateCartOffCanvas();
@@ -153,7 +181,12 @@ const updateCartOffCanvas = () => {
         cart[prId] = cart[prId] + 1
 
         updateCart(cart);
-        // updateAddButtons(cart);
+
+        if (lct[lct.length - 1] == 'shop') {
+            updateAddButtons(cart);
+        } else if (lct[lct.length - 2] == 'product') {
+            updateButtonsProd(cart)
+        }
         updateCartCount(cart)
         updateProdDict();
         updateCartOffCanvas();
@@ -161,7 +194,11 @@ const updateCartOffCanvas = () => {
 
     $('#close-cart').click(function () {
         updateCart(cart);
-        // updateAddButtons(cart);
+        if (lct[lct.length - 1] == 'shop') {
+            updateAddButtons(cart);
+        } else if (lct[lct.length - 2] == 'product') {
+            updateButtonsProd(cart)
+        }
         updateCartCount(cart);
         updateProdDict();
         updateCartOffCanvas();

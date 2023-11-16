@@ -1,8 +1,4 @@
-// $('body').hover(function () {
-//         console.log('hover')
-//     updateAddButtons()
-//     }
-// )
+updateAddButtons(cart)
 
 $('.sp-pr-btn-grp').on("click", "a.cart-minus", function () {
     console.log('cl')

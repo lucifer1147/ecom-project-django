@@ -66,12 +66,14 @@ const updateButtonsProd = (cart) => {
     if (Object.keys(cart).includes(`pr-${product_id}`) && cart[`pr-${product_id}`] > 0) {
         var count = cart[`pr-${product_id}`];
         var item = `pr-${product_id}`;
-        var cnt = `<a class="btn btn-primary cart minus-item" id="minus-item-${item}">-</a>
+        var cnt = `<button class="btn btn-light cart minus-item" id="minus-item-${item}">-</button>
                    <button class="val-btn btn btn-light cart-disabled" id="val-item-${item}"><strong>${count}</strong></button>
-                   <a class="btn btn-primary cart plus-item" id="plus-item-${item}">+</a>`;
+                   <button class="btn btn-light cart plus-item" id="plus-item-${item}">+</button>`;
+        document.getElementById('b-a-it').innerHTML = cnt;
     } else {
         var cnt = `<button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
                    <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>`;
+        document.getElementById('b-a-it').innerHTML = cnt;
     }
 
 }

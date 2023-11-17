@@ -19,15 +19,20 @@
 
     <div class="row action-buttons">
      <div class="btn-group buy-add-item" id="b-a-it">
-      <button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
-      <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>
+      <form action="/shop/checkout" class="btn-group" style="width: 100%; height: 100%">
+       <button class="btn btn-light text-dark col-md-6" type="submit" name="products" value="{{ product.id }}"><strong>Buy
+        Now</strong></button>
+       <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>
+      </form>
      </div>
     </div>
 
    </div>
 
-   <div class="col-md-8"\>
-    <h1 class="display-4" id="ProductHead"><strong>{{ product.product_name }}</strong><span id="prod-id-sp" style="display: none">{{ product.id }}</span></h1>
+   <div class="col-md-8" \>
+    <h1 class="display-4" id="ProductHead"><strong>{{ product.product_name }}</strong><span id="prod-id-sp"
+                                                                                            style="display: none">{{ product.id }}</span>
+    </h1>
     <ul class="product-tags">
      {% for tag in product.product_subCategory|split:"," %}
       <li>{{ tag }}</li>

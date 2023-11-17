@@ -93,10 +93,12 @@
             data-bs-toggle="dropdown">
      <strong>Cart Actions</strong>
     </button>
-    <ul class="dropdown-menu cart-dropdown" aria-labelledby="dropdownMenuButton">
-     <li><a class="dropdown-item clear-cart" href="#">Clear Cart</a></li>
-     <li><a class="dropdown-item" href="/shop/checkout">Checkout</a></li>
-    </ul>
+    <form action="/shop/checkout">
+     <ul class="dropdown-menu cart-dropdown" aria-labelledby="dropdownMenuButton">
+      <li><button class="dropdown-item clear-cart">Clear Cart</button></li>
+      <li><button class="dropdown-item" name="products" id="submit-button" type="submit">Checkout</button></li>
+     </ul>
+    </form>
    </div>
   </div>
  </div>

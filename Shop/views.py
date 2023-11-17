@@ -92,6 +92,10 @@ def product(request, id):
 
 
 def checkout(request):
+    if request.method == 'GET':
+        cart = request.GET.get('products')
+        print(cart)
+
     return render(request, 'Shop/checkout.html')
 
 

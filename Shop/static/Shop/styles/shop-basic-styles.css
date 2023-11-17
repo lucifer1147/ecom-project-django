@@ -1,10 +1,17 @@
+#cart-offcanvas {
+    display: flex;
+    justify-content: center;
+}
+
 div.cart-item-row {
     display: grid;
     height: 100px;
-    widht: 100%;
+    width: 80%;
 
     grid-template-columns: 10% 40% 50%;
     grid-template-rows: 50% 50%;
+
+    margin: 50px 20px;
 }
 
 .sr-no {

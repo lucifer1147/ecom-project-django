@@ -40,6 +40,8 @@ const updateCart = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+var I = 0;
+
 const updateProdDict = () => {
     for (const [item, count] of Object.entries(cart)) {
         if (count > 0) {
@@ -60,9 +62,20 @@ const updateProdDict = () => {
             delete prodDict[item];
         }
     }
+
+    if (I == 0) {
+        updateCart(cart);
+        updateCartCount(cart);
+        if (lct[lct.length - 1] == 'shop') {
+            updateAddButtons(cart);
+        } else if (lct[lct.length - 2] == 'product') {
+            updateButtonsProd(cart);
+        }
+        updateCartOffCanvas();
+        I++
+    }
 }
 
-setInterval(updateProdDict, 100)
 
 const updateButtonsProd = (cart) => {
     if (Object.keys(cart).includes(`pr-${product_id}`) && cart[`pr-${product_id}`] > 0) {
@@ -73,14 +86,17 @@ const updateButtonsProd = (cart) => {
                    <button class="btn btn-light cart plus-item" id="plus-item-${item}">+</button>`;
         document.getElementById('b-a-it').innerHTML = cnt;
     } else {
-        var cnt = `<button class="btn btn-light text-dark col-md-6"><strong>Buy Now</strong></button>
-                   <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>`;
+        var cnt = `<form action="/shop/checkout" class="btn-group" style="width: 100%; height: 100%">
+        <button class="btn btn-light text-dark col-md-6" type="submit" name="products" value="${product_id}"><strong>Buy Now</strong></button>
+                   <button class="btn btn-light text-dark col-md-6 plus-item"><strong>Add To Cart</strong></button>
+        </form>`;
         document.getElementById('b-a-it').innerHTML = cnt;
     }
 
 }
 
 const updateCartOffCanvas = () => {
+    console.log(10)
     dropdownBtn = document.getElementById('cart-offcanvas-dropdownMenuButton');
 
     itc = 0;
@@ -97,6 +113,7 @@ const updateCartOffCanvas = () => {
         offCanvasHeading = "Items in your Cart:";
         for (elem of Array.from(dropdownBtn.parentElement.children[1].children)) {
             elem.children[0].classList.remove('disabled');
+            $('#submit-button').attr('value', JSON.stringify(cart))
         }
     }
 
@@ -157,8 +174,8 @@ const updateCartOffCanvas = () => {
 
 const updateAll = (lct) => {
     updateCart(cart);
-    updateCartCount(cart);
     updateProdDict();
+    updateCartCount(cart);
     if (lct[lct.length - 1] == 'shop') {
         updateAddButtons(cart);
     } else if (lct[lct.length - 2] == 'product') {
@@ -189,6 +206,7 @@ for (const [item, count] of Object.entries(cart)) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+setInterval(updateProdDict, 100)
 updateAll(lct);
 
 $('.navbar').on('click', '#cart-button', function () {
